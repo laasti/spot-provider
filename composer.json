@@ -1,0 +1,25 @@
+{
+    "name": "laasti/spot-provider",
+    "description": "A league/container service provider for Spot ORM.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sonia Marquette",
+            "email": "contact@nebulousweb.com"
+        }
+    ],
+    "require": {
+        "league/container": "~1.3",
+        "vlucas/spot2": "^2.1",
+        "php": ">=5.4"
+    },
+    "require-dev": {
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Laasti\\SpotProvider\\": "src/"
+        }
+    }
+}
