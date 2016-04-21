@@ -2,12 +2,12 @@
 
 namespace Laasti\SpotProvider;
 
-use League\Container\ServiceProvider;
+use League\Container\ServiceProvider\AbstractServiceProvider;
 use RuntimeException;
 use Spot\Config;
 use Spot\Locator;
 
-class SpotProvider extends ServiceProvider
+class SpotProvider extends AbstractServiceProvider
 {
 
     protected $provides = [];
@@ -21,7 +21,7 @@ class SpotProvider extends ServiceProvider
     {
         $di = $this->getContainer();
 
-        $connections = $di['config.connections'];
+        $connections = $di->get('config')['connections'];
 
         $first = true;
         foreach ($connections as $connection) {
@@ -54,7 +54,7 @@ class SpotProvider extends ServiceProvider
         if (!count($this->provides)) {
             $this->provides = $this->defaultProvides;
             try {
-                $connections = $this->getContainer()['config.connections'];
+                $connections = $this->getContainer()->get('config')['connections'];
 
                 if (!is_array($connections) || count($connections) === 0) {
                     throw new \Exception();

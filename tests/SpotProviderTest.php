@@ -20,7 +20,7 @@ class SpotProviderTest extends \PHPUnit_Framework_TestCase
     public function testProvider()
     {
         $container = new Container();
-        $container->add('config.connections', [
+        $container->add('config', ['connections' => [
             [
                 'name' => 'default',
                 'dsn' => 'mysql://root:@localhost/nodb'
@@ -29,7 +29,7 @@ class SpotProviderTest extends \PHPUnit_Framework_TestCase
                 'name' => 'mysql2',
                 'dsn' => 'mysql://root:@localhost/nodb2'
             ],
-        ]);
+        ]]);
         $container->addServiceProvider(new SpotProvider);
         $config = $container->get('Spot\Config');
         $locator = $container->get('Spot\Locator');
