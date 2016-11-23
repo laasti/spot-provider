@@ -25,12 +25,14 @@ class SpotProvider extends AbstractServiceProvider
 
         $first = true;
         foreach ($connections as $connection) {
-            $di->add('spot.config.' . $connection['name'], function() use ($connection) {
+            $di->add('spot.config.' . $connection['name'], function($logger) use ($connection) {
                 $cfg = new Config();
                 $param = isset($connection['dsn']) ? $connection['dsn'] : $connection;
-                $cfg->addConnection($connection['name'], $param);
+                $conn = $cfg->addConnection($connection['name'], $param);
+                $sqlLogger = new \Laasti\SpotProvider\MonologSqlLogger($logger);
+                $conn->getConfiguration()->setSQLLogger($sqlLogger);
                 return $cfg;
-            }, true);
+            }, true)->withArgument('Psr\Log\LoggerInterface');
 
             $di->add('spot.locator.' . $connection['name'], function() use ($di, $connection) {
                 $spot = new Locator($di->get('spot.config.' . $connection['name']));
