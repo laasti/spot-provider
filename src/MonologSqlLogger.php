@@ -18,6 +18,8 @@ class MonologSqlLogger implements \Doctrine\DBAL\Logging\SQLLogger
             $param = array_shift($params);
             if (null === $param) {
                 return "NULL";
+            } else if (is_array($param)) {
+                return "'" . implode(', ', $param) . "'";
             } else {
                 return "'" . $param . "'";
             }
