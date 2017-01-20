@@ -62,4 +62,4 @@ Author: Sonia Marquette (@nebulousGirl)
 
 ## License
 
-Released under the MIT License. See LICENSE.txt file.
+Released under the MIT License. See LICENSE.md file.
