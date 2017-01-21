@@ -11,7 +11,7 @@ class SpotProvider extends AbstractServiceProvider
 {
 
     protected $provides = [];
-    
+
     protected $defaultProvides = [
         'Spot\Config',
         'Spot\Locator'
@@ -25,7 +25,7 @@ class SpotProvider extends AbstractServiceProvider
 
         $first = true;
         foreach ($connections as $connection) {
-            $di->add('spot.config.' . $connection['name'], function($logger) use ($connection) {
+            $di->add('spot.config.' . $connection['name'], function ($logger) use ($connection) {
                 $cfg = new Config();
                 $param = isset($connection['dsn']) ? $connection['dsn'] : $connection;
                 $conn = $cfg->addConnection($connection['name'], $param);
@@ -34,16 +34,16 @@ class SpotProvider extends AbstractServiceProvider
                 return $cfg;
             }, true)->withArgument('Psr\Log\LoggerInterface');
 
-            $di->add('spot.locator.' . $connection['name'], function() use ($di, $connection) {
+            $di->add('spot.locator.' . $connection['name'], function () use ($di, $connection) {
                 $spot = new Locator($di->get('spot.config.' . $connection['name']));
                 return $spot;
             }, true);
 
             if ($first) {
-                $di->add('Spot\Config', function() use ($di, $connection) {
+                $di->add('Spot\Config', function () use ($di, $connection) {
                     return $di->get('spot.config.' . $connection['name']);
                 }, true);
-                $di->add('Spot\Locator', function($config = null) use ($di, $connection) {
+                $di->add('Spot\Locator', function ($config = null) use ($di, $connection) {
                     return $di->get('spot.locator.' . $connection['name'], [$config]);
                 }, true);
                 $first = false;
@@ -73,5 +73,4 @@ class SpotProvider extends AbstractServiceProvider
 
         return parent::provides($alias);
     }
-
 }

@@ -1,65 +1,81 @@
-# Laasti/spot-provider
+# Laasti / Spot Service Provider
 
-A league/container service provider for Spot ORM.
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENSE.md)
+[![Build Status][ico-travis]][link-travis]
+[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
+[![Quality Score][ico-code-quality]][link-code-quality]
+[![Total Downloads][ico-downloads]][link-downloads]
 
-## Installation
+This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
+PSRs you support to avoid any confusion with users and contributors.
+
+## Structure
+
+If any of the following are applicable to your project, then the directory structure should follow industry best practises by being named the following.
 
 ```
-composer require laasti/spot-provider
+bin/        
+config/
+src/
+tests/
+vendor/
+```
+
+
+## Install
+
+Via Composer
+
+``` bash
+$ composer require laasti/spot-provider
 ```
 
 ## Usage
 
-```php
+``` php
+$skeleton = new League\Skeleton();
+echo $skeleton->echoPhrase('Hello, League!');
+```
 
-$config = [
-    'name' => 'default', //required
-    //String DSN
-    'dsn' => '',
-    //OR, full array
-    'adapter'  => '',
-    'host'     => '', //required
-    'dbname'   => '', //required
-    'user'     => '', //required
-    'password' => '', //required
-    'port'     => '',
-    'protocol' => '',
-    'socket'   => '',
-    'dbsyntax' => '',
-];
+## Change log
 
-$container = new League\Container\Container();
-$container->add('config.connections', [
-    [
-        'name' => 'default',
-        //...
-    ]
-]);
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-$container->addServiceProvider('Laasti\SpotProvider\SpotProvider');
+## Testing
 
-$container->get('Spot\Locator');//OR, $container->get('spot.locator.default');
-$container->add('Acme\MyMapper')->withArguments(['Spot\Locator']);
-$container->add('Acme\MyMsSqlMapper')->withArguments(['spot.locator.mssql']);
-
+``` bash
+$ composer test
 ```
 
 ## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details.
 
-## History
+## Security
 
-See CHANGELOG.md for more information.
+If you discover any security related issues, please email contact@nebulousweb.com instead of using the issue tracker.
 
 ## Credits
 
-Author: Sonia Marquette (@nebulousGirl)
+- [Sonia Marquette][link-author]
+- [All Contributors][link-contributors]
 
 ## License
 
-Released under the MIT License. See LICENSE.txt file.
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+[ico-version]: https://img.shields.io/packagist/v/laasti/spot-provider.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/laasti/spot-provider/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/laasti/spot-provider.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/laasti/spot-provider.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/laasti/spot-provider.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/laasti/spot-provider
+[link-travis]: https://travis-ci.org/laasti/spot-provider
+[link-scrutinizer]: https://scrutinizer-ci.com/g/laasti/spot-provider/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/laasti/spot-provider
+[link-downloads]: https://packagist.org/packages/laasti/spot-provider
+[link-author]: https://github.com/nebulousGirl
+[link-contributors]: ../../contributors
